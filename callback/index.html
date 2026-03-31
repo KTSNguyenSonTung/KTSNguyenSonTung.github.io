@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Authorization - Bến Tre House</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 600px; padding: 40px; text-align: center; }
+        h1 { color: #4CAF50; font-size: 1.8em; margin-bottom: 20px; }
+        .success { background: #1a2e1a; border: 1px solid #4CAF50; border-radius: 12px; padding: 30px; margin: 20px 0; }
+        .url-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 15px; margin: 15px 0; word-break: break-all; font-family: monospace; font-size: 0.85em; color: #81C784; text-align: left; user-select: all; cursor: pointer; }
+        .instruction { color: #bbb; line-height: 1.6; margin: 15px 0; }
+        .step { background: #1a1a1a; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: left; }
+        .step-num { color: #4CAF50; font-weight: bold; }
+        button { background: #4CAF50; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1em; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Xác thực TikTok thành công!</h1>
+        
+        <div class="success">
+            <p class="instruction">Copy đường link bên dưới và dán vào PowerShell:</p>
+            <div class="url-box" id="fullUrl" onclick="copyUrl()"></div>
+            <button onclick="copyUrl()">📋 Copy URL</button>
+        </div>
+
+        <div class="step">
+            <p><span class="step-num">Bước 1:</span> Nhấn nút "Copy URL" ở trên</p>
+        </div>
+        <div class="step">
+            <p><span class="step-num">Bước 2:</span> Quay lại cửa sổ PowerShell</p>
+        </div>
+        <div class="step">
+            <p><span class="step-num">Bước 3:</span> Dán URL vào → nhấn Enter</p>
+        </div>
+    </div>
+
+    <script>
+        // Display the full callback URL
+        document.getElementById('fullUrl').textContent = window.location.href;
+        
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.querySelector('button');
+                btn.textContent = '✅ Đã copy!';
+                btn.style.background = '#2e7d32';
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy URL';
+                    btn.style.background = '#4CAF50';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
